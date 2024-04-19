@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, jsonify
 from pulldata import get_query
 from responses import get_Chat_response
+from dotenv import load_dotenv
+import os
+from flask_cors import CORS
 
 # import pymongo
 # from pymongo import MongoClient
@@ -18,6 +21,8 @@ from responses import get_Chat_response
 
 
 app = Flask(__name__)
+CORS(app)
+
 
 @app.get("/")
 
