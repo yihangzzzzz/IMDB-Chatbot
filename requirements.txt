@@ -1,0 +1,5 @@
+flask==3.0.3
+pandas==2.2.2
+numpy==1.26.4
+sklearn==0.0.post12
+difflib-chubak==0.01
