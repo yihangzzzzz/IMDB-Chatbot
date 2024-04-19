@@ -16,21 +16,17 @@ def get_data(x):
     return data
 
 url = 'https://www.imdb.com/chart/top/'
-# url = 'https://www.imdb.com/' + movie_url
 
 data = get_data(url)
 
-# all_movies_df = pd.DataFrame(columns=['title', 'year', 'duration', 'trailer', 'rating', 'review'])
-
 all_movies = data.find_all('li', attrs = {'class' : 'ipc-metadata-list-summary-item sc-10233bc-0 iherUv cli-parent'})
-# print(all_movies)
+
 cluster = MongoClient("mongodb+srv://imdbchatbot:IMDBchatbot2024@chatbot.zgtjddk.mongodb.net/?retryWrites=true&w=majority&appName=Chatbot")
 db = cluster["IMDB"]
 collection = db["Top 250 Movies"]
 
 for movie in all_movies:
     movie_url = 'https://www.imdb.com/'+movie.a['href']
-#     print(movie_url)
     cur_movie = get_data(movie_url)
     
     title = cur_movie.find('h1', attrs = {'data-testid' : 'hero__pageTitle'}).text
@@ -48,7 +44,6 @@ for movie in all_movies:
     print(title)
     add_movie = {'Title':title,"Year":year,"Duration":duration,"Trailer":trailer,"Genre":genres,"Rating":rating,"Reviews":review}
     collection.insert_one(add_movie)
-    # all_movies_df.loc[len(all_movies_df.index)] = [title,year,duration,trailer,rating,review]
 
 # all_movies_df.head()
 

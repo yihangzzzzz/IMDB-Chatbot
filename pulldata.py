@@ -2,14 +2,14 @@ import pymongo
 from pymongo import MongoClient
 from difflib import SequenceMatcher
 import re
+import random
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 # from gensim.models import Word2Vec
 # from gensim.utils import simple_preprocess
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
 # from nltk.corpus import stopwords
 # from nltk.tokenize import word_tokenize
-
 # import nltk
 # nltk.download('stopwords')
 # nltk.download('punkt')
@@ -23,6 +23,9 @@ def get_query(att,value):
   ans = []
   for x in collection.find({att:rgx}):
     ans.append(x)
+  # if att == "Genre":
+  #   random_index = random.randint(0, len(ans)-1)
+  #   ans.insert(0, ans.pop(random_index))
   return ans
 
 def get_recommend(text):
@@ -35,16 +38,6 @@ def get_recommend(text):
   result_index = similarities.index(max(similarities))
   ans = collection.find_one({"Movie_ID":result_index})
   return [ans]
-
-#   stop_words = set(stopwords.words('english'))
-#   all_movies = collection.find()
-#   descriptions = []
-#   for d in all_movies:
-#       tokens = [word for word in word_tokenize(d['Description'].lower()) if word.isalnum() and word not in stop_words]
-#       descriptions.append(tokens)
-#   query_tokens = [word for word in word_tokenize(text.lower()) if word.isalnum() and word not in stop_words]
-#   descriptions.append(query_tokens)
-    
 
 #   model = Word2Vec(descriptions, vector_size=100, window=5, min_count=1, sg=0)
     

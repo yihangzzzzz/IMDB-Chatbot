@@ -6,3 +6,5 @@ pymongo==4.6.3
 gunicorn
 python-dotenv
 flask_cors
+bs4
+nltk

@@ -4,6 +4,7 @@ from pulldata import get_query, get_recommend
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from difflib import SequenceMatcher
+import random
 
 threshold = 0.3
 
@@ -35,11 +36,11 @@ def get_Chat_response(level,text):
 
     if 's' in qns.keys():
         ans = get_query(level,text)
-        return return_movie(ans),state
+        return return_movie(level,ans),state
     
     elif 'r' in qns.keys():
         ans = get_recommend(text)
-        return return_movie(ans),state
+        return return_movie(level,ans),state
 
     else:
         highest = 0
@@ -75,17 +76,14 @@ def display_movie(movie):
     '''
     return html
 
-# def display_3_movies(movies3):
-#      for i in range(1,4):
-          
-          
-
-def return_movie(ans):
+def return_movie(level,ans):
     if len(ans):
+        if level == "Genre":
+            result = display_movie(ans[random.randint(0,len(ans)-1)])
+        else:
             result = display_movie(ans[0])
-            
     else:
-            result = 'Sorry no results found'
+        result = 'Sorry no results found'
     return result
 
 
