@@ -25,7 +25,6 @@ CORS(app)
 
 
 @app.route("/")
-
 def index():
     return render_template('chatbot.html')
 
