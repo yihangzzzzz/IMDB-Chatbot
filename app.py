@@ -24,7 +24,7 @@ app = Flask(__name__)
 CORS(app)
 
 
-@app.get("/")
+@app.route("/")
 
 def index():
     return render_template('chatbot.html')
