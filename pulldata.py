@@ -27,7 +27,7 @@ def get_query(att,value):
 
 def get_recommend(text):
   all_movies = collection.find()
-  descriptions = [d['Description'] for d in all_movies]
+  descriptions = [d['Sypnosis'] for d in all_movies]
   vectorizer = TfidfVectorizer()
   tfidf_matrix = vectorizer.fit_transform(descriptions)
   query_vector = vectorizer.transform([text])

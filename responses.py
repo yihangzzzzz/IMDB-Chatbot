@@ -1,5 +1,3 @@
-# import pymongo
-# from pymongo import MongoClient
 import pandas as pd
 import numpy as np
 from pulldata import get_query, get_recommend
@@ -7,9 +5,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from difflib import SequenceMatcher
 
-# cluster = MongoClient("mongodb+srv://imdbchatbot:IMDBchatbot2024@chatbot.zgtjddk.mongodb.net/?retryWrites=true&w=majority&appName=Chatbot")
-# db = cluster["IMDB"]
-# collection = db["Top 250 Movies"]
 threshold = 0.3
 
 all_menus = {
@@ -34,7 +29,7 @@ all_menus = {
 def get_Chat_response(level,text):
     
     qns = all_menus.get(level)
-    # print(qns)
+
     result = 'Sorry I couldnt understand that'
     state = level
 
@@ -70,7 +65,7 @@ def display_movie(movie):
 
     html = '''
     <div>
-        <img src ='''+image+'''>
+        <img class="movie__poster" src ='''+image+'''>
         <h3>'''+title+'''</h3>
         <p>'''+year+'<br>'+duration+'<br>'+genre+'<br>'+rating+'''</p><br>
         <p>'''+description+'''</p><br>
