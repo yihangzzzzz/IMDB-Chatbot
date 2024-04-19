@@ -61,8 +61,8 @@ def get_recommend(text):
 #   ans = collection.find_one({"Movie_ID":result_index})
 #   return [ans]
 
-movie = get_query('Ttile','dune')
-print(movie)
+# movie = get_query('Ttile','dune')
+# print(movie)
 
 
   
