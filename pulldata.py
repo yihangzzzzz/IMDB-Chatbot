@@ -7,12 +7,12 @@ import re
 # from gensim.utils import simple_preprocess
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
+# from nltk.corpus import stopwords
+# from nltk.tokenize import word_tokenize
 
-import nltk
-nltk.download('stopwords')
-nltk.download('punkt')
+# import nltk
+# nltk.download('stopwords')
+# nltk.download('punkt')
 
 cluster = MongoClient("mongodb+srv://imdbchatbot:IMDBchatbot2024@chatbot.zgtjddk.mongodb.net/?retryWrites=true&w=majority&appName=Chatbot")
 db = cluster["IMDB"]
